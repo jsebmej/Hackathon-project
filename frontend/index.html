@@ -1,53 +1,1958 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prueba Google + Llama</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-  </head>
-  <body>
-    <main class="shell">
-      <section class="panel">
-        <header>
-          <p class="eyebrow">Backend local</p>
-          <h1>Google + Llama 3.2</h1>
-        </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLex 1581 — Registro y Diagnóstico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
 
-        <label class="field">
-          <span>Google Client ID</span>
-          <input id="clientIdInput" type="text" placeholder="xxxxx.apps.googleusercontent.com" autocomplete="off" />
-        </label>
+:root {
+  --blue-900: #0B1E4A;
+  --blue-800: #15306B;
+  --blue-700: #1E40AF;
+  --blue-500: #2563EB;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --slate-900: #1F2937;
+  --slate-700: #374151;
+  --slate-500: #64748B;
+  --gray-400: #9CA3AF;
+  --gray-300: #D1D5DB;
+  --gray-200: #E5E7EB;
+  --bg-soft: #F4F7FC;
+  --white: #FFFFFF;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--slate-700); -webkit-font-smoothing: antialiased; }
 
-        <div class="actions">
-          <button id="initGoogleButton" type="button">Preparar login</button>
-          <button id="logoutButton" type="button" disabled>Cerrar sesion</button>
+/* Cambio de vistas (un solo proceso) */
+.screen { display: none; }
+.screen.is-active { display: block; animation: scr-in .28s ease; }
+#screen-inicio { background: #FFFFFF; }
+#screen-registro { background: var(--bg-soft); }
+#screen-diag { background: var(--bg-soft); }
+@keyframes scr-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .screen.is-active { animation: none; } }
+
+/* ===== INICIO ===== */
+/* ============================================================
+   DataLex 1581 — Landing page
+   Paleta y tipografía según especificación
+   ============================================================ */
+
+
+a { text-decoration: none; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: relative;
+  background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%);
+  padding: 34px 0 90px;
+}
+
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* Marca / logo */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--white);
+}
+
+.brand-shield {
+  width: 54px;
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 14px rgba(37, 99, 235, .45));
+}
+
+.brand-text { display: flex; flex-direction: column; }
+
+.brand-name {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  line-height: 1;
+}
+.brand-name-dark { color: var(--white); }
+.brand-name-accent { color: var(--blue-500); }
+
+.brand-tagline {
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  color: var(--gray-300);
+  line-height: 1.35;
+}
+
+/* Insignia de la ley */
+.inicio-law-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .04);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.inicio-flag {
+  width: 30px;
+  height: 20px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Onda inferior */
+.header-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 90px;
+  display: block;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 32px 20px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-title {
+  margin: 0 0 22px;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.5px;
+  color: var(--slate-900);
+}
+.hero-title .accent { color: var(--blue-500); }
+
+.hero-text {
+  margin: 0;
+  max-width: 420px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--slate-700);
+}
+
+.hero-art {
+  display: flex;
+  justify-content: center;
+}
+.hero-shield {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  filter: drop-shadow(0 22px 40px rgba(37, 99, 235, .28));
+}
+
+/* ============================================================
+   BENEFICIOS
+   ============================================================ */
+.benefits {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 40px 32px 30px;
+}
+
+.benefits-title {
+  text-align: center;
+  margin: 0 0 48px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.benefit {
+  text-align: center;
+  padding: 0 12px;
+}
+
+.benefit-icon {
+  width: 78px;
+  height: 78px;
+  margin: 0 auto 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: var(--bg-soft);
+}
+.benefit-icon svg { width: 42px; height: 42px; }
+
+.benefit-name {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--slate-900);
+}
+
+.benefit-text {
+  margin: 0 auto;
+  max-width: 230px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--slate-700);
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+.cta {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 32px 70px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.cta-shield svg {
+  width: 64px;
+  height: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 14px rgba(37, 99, 235, .3));
+}
+
+.cta-copy { flex: 1; }
+
+.cta-title {
+  margin: 0 0 10px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.cta-text {
+  margin: 0;
+  max-width: 360px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--slate-700);
+}
+
+.btn-primary {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 16px 34px;
+  border-radius: 10px;
+  background: var(--green-500);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, .35);
+  transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.btn-primary:hover {
+  background: var(--green-600);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(22, 163, 74, .4);
+}
+.btn-primary:focus-visible {
+  outline: 3px solid var(--blue-500);
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 10px;
+  }
+  .hero-copy { order: 2; }
+  .hero-art { order: 1; margin-bottom: 8px; }
+  .hero-text { margin-left: auto; margin-right: auto; }
+
+  .benefits-grid { grid-template-columns: 1fr; gap: 40px; }
+
+  .cta {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  .cta-text { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 560px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .brand-name { font-size: 32px; }
+  .hero-title { font-size: 30px; }
+  .inicio-law-badge { align-self: stretch; justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+}
+
+/* ===== REGISTRO ===== */
+/* ============================================================
+   DataLex 1581 — Pantalla de inicio de sesión
+   Misma paleta y tipografía (Inter) que el landing
+   ============================================================ */
+
+
+a { text-decoration: none; }
+
+/* Contenedor general */
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-card {
+  flex: 1;
+  max-width: 1080px;
+  width: 100%;
+  margin: 28px auto 0;
+  display: grid;
+  grid-template-columns: 42% 58%;
+  background: var(--white);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(15, 30, 74, .12);
+}
+
+/* ============================================================
+   PANEL IZQUIERDO
+   ============================================================ */
+.auth-aside {
+  position: relative;
+  padding: 48px 44px;
+  color: var(--white);
+  background:
+    radial-gradient(120% 80% at 0% 0%, rgba(59,130,246,.28) 0%, transparent 55%),
+    linear-gradient(160deg, var(--blue-800) 0%, var(--blue-900) 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.aside-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--white);
+  margin-bottom: 44px;
+}
+.aside-shield {
+  width: 50px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(37,99,235,.45));
+}
+.aside-name {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -.5px;
+  line-height: 1;
+}
+.aside-name-light { color: var(--white); }
+.aside-name-accent { color: #5B9BFF; }
+.aside-tagline {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,.78);
+  line-height: 1.4;
+}
+
+/* Características */
+.features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.feature {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.feature-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: linear-gradient(160deg, #2563EB 0%, #1E40AF 100%);
+  box-shadow: 0 6px 14px rgba(37,99,235,.3);
+}
+.feature-icon svg { width: 24px; height: 24px; }
+.feature-title {
+  margin: 2px 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--white);
+}
+.feature-text {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgba(255,255,255,.72);
+  max-width: 230px;
+}
+
+/* Ayuda */
+.aside-help {
+  margin-top: auto;
+  padding-top: 34px;
+  border-top: 1px solid rgba(255,255,255,.14);
+}
+.aside-help-title {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+.aside-help-text {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255,255,255,.72);
+}
+.aside-help-text a { color: #5B9BFF; }
+
+/* ============================================================
+   PANEL DERECHO (formulario)
+   ============================================================ */
+.auth-main {
+  position: relative;
+  padding: 56px 56px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Insignia ley */
+.law-badge {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  background: var(--white);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--slate-700);
+  line-height: 1.3;
+  box-shadow: 0 2px 6px rgba(15,30,74,.05);
+}
+.flag { width: 24px; height: 16px; border-radius: 2px; }
+
+/* Formulario */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+.form-title {
+  margin: 0 0 8px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+.form-subtitle {
+  margin: 0 0 30px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--gray-400);
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-700);
+}
+
+.field {
+  position: relative;
+  margin-bottom: 18px;
+}
+.field-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--gray-400);
+  pointer-events: none;
+}
+.field input,
+.field select {
+  width: 100%;
+  height: 48px;
+  padding: 0 44px;
+  border: 1px solid var(--gray-300);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--slate-900);
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.field input::placeholder { color: var(--gray-400); }
+.field select {
+  appearance: none;
+  color: var(--slate-900);
+}
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-color: var(--blue-500);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.14);
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: var(--gray-400);
+  cursor: pointer;
+  border-radius: 8px;
+}
+.toggle-pass:hover { color: var(--slate-700); }
+.toggle-pass .eye { width: 19px; height: 19px; }
+.toggle-pass .eye-slash { display: inline; }
+.toggle-pass.is-on .eye-slash { display: none; }
+
+/* Opciones */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 22px;
+  font-size: 13px;
+}
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--slate-700);
+  cursor: pointer;
+}
+.remember input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--blue-500);
+  cursor: pointer;
+}
+.link { color: var(--blue-500); font-weight: 500; }
+.link:hover { text-decoration: underline; }
+
+/* Botón Ingresar */
+.btn-login {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  background: var(--green-500);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(34,197,94,.32);
+  transition: background .18s ease, transform .18s ease;
+}
+.btn-login svg { width: 20px; height: 20px; }
+.btn-login:hover { background: var(--green-600); transform: translateY(-1px); }
+.btn-login:focus-visible { outline: 3px solid var(--blue-500); outline-offset: 3px; }
+
+/* Divisor */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 22px 0;
+  color: var(--gray-400);
+  font-size: 13px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+/* Botón Google */
+.btn-google {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid var(--gray-300);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--slate-700);
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.btn-google svg { width: 20px; height: 20px; }
+.btn-google:hover { background: var(--bg-soft); border-color: var(--gray-400); }
+
+/* Registro */
+.signup {
+  margin: 26px 0 0;
+  text-align: center;
+  font-size: 13.5px;
+  color: var(--slate-700);
+}
+
+/* ============================================================
+   PIE
+   ============================================================ */
+.auth-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 22px 16px;
+  font-size: 13px;
+  color: var(--gray-400);
+  text-align: center;
+}
+.auth-footer svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 880px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+    margin-top: 0;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+  .auth-aside { padding: 40px 32px; }
+  .features { gap: 22px; }
+  .auth-main { padding: 64px 28px 40px; }
+  .law-badge { top: 16px; right: 16px; }
+}
+
+@media (max-width: 480px) {
+  .form-title { font-size: 26px; }
+  .auth-aside { padding: 32px 24px; }
+  .auth-main { padding: 60px 22px 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+}
+
+/* ===== DIAGNOSTICO ===== */
+/* ============================================================
+   DataLex 1581 — Panel de diagnóstico (chat)
+   Misma paleta y tipografía (Inter)
+   ============================================================ */
+
+
+.diag-app {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+}
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+.sidebar {
+  padding: 28px 22px;
+  color: var(--white);
+  overflow-y: auto;
+  background:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1px 1px at 70% 18%, rgba(255,255,255,.3), transparent),
+    radial-gradient(1px 1px at 45% 60%, rgba(255,255,255,.25), transparent),
+    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,.3), transparent),
+    linear-gradient(165deg, var(--blue-800) 0%, var(--blue-900) 100%);
+}
+
+.side-logo {
+  display: block;
+  text-align: center;
+  color: var(--white);
+  text-decoration: none;
+  margin-bottom: 24px;
+}
+.side-shield {
+  width: 52px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(37,99,235,.5));
+}
+.side-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -.4px;
+}
+.side-tagline {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255,255,255,.72);
+  line-height: 1.45;
+}
+
+/* Tarjetas */
+.card {
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+}
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+}
+.card-pct {
+  font-size: 15px;
+  font-weight: 700;
+  color: #5B9BFF;
+}
+
+.progress {
+  margin: 12px 0 18px;
+  height: 7px;
+  border-radius: 99px;
+  background: rgba(255,255,255,.14);
+  overflow: hidden;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2563EB, #2DD4BF);
+}
+
+/* Anillos */
+.rings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ring svg { width: 100%; max-width: 78px; height: auto; }
+.ring-pct {
+  position: absolute;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+.ring-labels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+.ring-labels span {
+  text-align: center;
+  font-size: 10.5px;
+  line-height: 1.3;
+  color: rgba(255,255,255,.7);
+}
+
+/* Información de la empresa */
+.info { margin: 14px 0 0; }
+.info div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.info div:last-child { border-bottom: none; }
+.info dt { margin: 0; font-size: 13px; color: rgba(255,255,255,.66); }
+.info dd { margin: 0; font-size: 13px; font-weight: 600; color: var(--white); text-align: right; }
+
+.side-legal {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 8px 4px 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: rgba(255,255,255,.6);
+}
+.side-legal svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* ============================================================
+   CHAT
+   ============================================================ */
+.chat {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-soft);
+  min-width: 0;
+}
+
+/* Encabezado */
+.chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 26px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+}
+.chat-head-left { display: flex; align-items: center; gap: 12px; }
+.bot-avatar {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: linear-gradient(160deg, #2563EB, #1E40AF);
+}
+.bot-avatar svg { width: 24px; height: 24px; }
+.chat-head-name { margin: 0; font-size: 12px; font-weight: 600; color: var(--gray-400); }
+.chat-head-role { margin: 2px 0 0; font-size: 15px; font-weight: 700; color: var(--slate-900); }
+
+.chat-head-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.meta { text-align: right; }
+.meta p { margin: 0 0 3px; font-size: 12.5px; color: var(--gray-400); }
+.meta strong { color: var(--slate-700); font-weight: 600; }
+.dot-green { color: var(--green-600) !important; }
+.ia-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  border-radius: 99px;
+  background: rgba(34,197,94,.12);
+  color: var(--green-600);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green-500);
+  box-shadow: 0 0 0 0 rgba(34,197,94,.6);
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* Hilo */
+.thread {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: #ECFDF5;
+  border: 1px solid #BBF7D0;
+}
+.banner svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px; }
+.banner p { margin: 0; font-size: 13.5px; line-height: 1.55; color: #166534; }
+.banner strong { color: #14532D; }
+
+/* Mensajes */
+.msg { display: flex; align-items: flex-start; gap: 10px; max-width: 78%; }
+.msg-bot { align-self: flex-start; }
+.msg-user { align-self: flex-end; flex-direction: row; }
+
+.msg-tag {
+  flex-shrink: 0;
+  margin-top: 2px;
+  padding: 4px 9px;
+  border-radius: 8px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--slate-500);
+}
+
+.bubble {
+  padding: 13px 16px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.bubble-bot {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-top-left-radius: 4px;
+  color: var(--slate-700);
+}
+.bubble-bot p { margin: 0 0 9px; }
+.bubble-bot p:last-child { margin-bottom: 0; }
+.bubble-bot strong { color: var(--blue-700); font-weight: 600; }
+
+.bubble-user {
+  background: linear-gradient(160deg, #DBEAFE, #BFDBFE);
+  border-top-right-radius: 4px;
+  color: #1E3A8A;
+  font-weight: 500;
+}
+.user-avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--gray-200);
+}
+.user-avatar svg { width: 20px; height: 20px; }
+
+/* Tooltip de pregunta */
+.tip {
+  flex-shrink: 0;
+  align-self: flex-end;
+  padding: 11px 14px;
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  box-shadow: 0 6px 16px rgba(15,30,74,.08);
+}
+.tip p { margin: 0 0 4px; font-size: 12px; color: var(--slate-700); white-space: nowrap; }
+.tip p:last-child { margin-bottom: 0; }
+.tip span { color: var(--gray-400); }
+
+/* Escribiendo */
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--gray-400);
+}
+.dots { display: inline-flex; gap: 4px; }
+.dots i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--blue-500);
+  animation: blink 1.4s infinite both;
+}
+.dots i:nth-child(2) { animation-delay: .2s; }
+.dots i:nth-child(3) { animation-delay: .4s; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+
+/* Composer */
+.composer {
+  padding: 16px 30px 22px;
+  background: var(--bg-soft);
+}
+.composer-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 8px 8px 18px;
+  background: var(--white);
+  border: 1px solid var(--gray-300);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(15,30,74,.04);
+}
+.composer-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--slate-900);
+  background: transparent;
+}
+.composer-box input::placeholder { color: var(--gray-400); }
+
+.icon-btn {
+  width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; background: transparent;
+  color: var(--gray-400); cursor: pointer;
+  border-radius: 9px;
+}
+.icon-btn:hover { color: var(--slate-700); background: var(--bg-soft); }
+.icon-btn svg { width: 20px; height: 20px; }
+
+.send-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 4px;
+  padding: 0 20px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: var(--green-500);
+  color: var(--white);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.send-btn svg { width: 18px; height: 18px; }
+.send-btn:hover { background: var(--green-600); }
+.export-btn {
+  background: var(--blue-500);
+}
+.export-btn:hover { background: var(--blue-700); }
+.send-btn:disabled {
+  background: var(--gray-400);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 920px) {
+  .diag-app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+  .sidebar { order: 2; }
+  .chat { order: 1; min-height: 70vh; }
+  .chat-head { flex-wrap: wrap; }
+  .msg { max-width: 90%; }
+  .tip { display: none; }
+}
+
+@media (max-width: 540px) {
+  .thread { padding: 18px 16px; }
+  .composer { padding: 12px 16px 18px; }
+  .send-btn { padding: 0 14px; }
+  .chat-head-right { width: 100%; justify-content: space-between; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse, .dots i { animation: none !important; }
+
+}
+
+  </style>
+</head>
+<body>
+
+  <section id="screen-inicio" class="screen is-active">
+
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#" data-go="inicio" aria-label="DataLex 1581 — inicio">
+        <!-- Logo escudo con candado -->
+        <svg class="brand-shield" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoShield" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#1E40AF"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="url(#logoShield)"/>
+          <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="none" stroke="#60A5FA" stroke-width="1.5" opacity=".5"/>
+          <rect x="22" y="33" width="20" height="17" rx="3" fill="#fff"/>
+          <path d="M25 33 V27 a7 7 0 0 1 14 0 V33" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="32" cy="40" r="3" fill="#1E40AF"/>
+          <rect x="31" y="40" width="2" height="6" rx="1" fill="#1E40AF"/>
+        </svg>
+
+        <span class="brand-text">
+          <span class="brand-name"><span class="brand-name-dark">DataLex</span><span class="brand-name-accent">1581</span></span>
+          <span class="brand-tagline">Autodiagnóstico inteligente<br />para la protección de datos</span>
+        </span>
+      </a>
+
+      <div class="inicio-law-badge">
+        <span>Ley 1581 2012 -<br />Colombia</span>
+        <!-- Bandera de Colombia -->
+        <svg class="inicio-flag" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Bandera de Colombia">
+          <rect width="30" height="10" fill="#FCD116"/>
+          <rect y="10" width="30" height="5" fill="#003893"/>
+          <rect y="15" width="30" height="5" fill="#CE1126"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Onda inferior que conecta con el fondo blanco -->
+    <svg class="header-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M0,40 C360,120 1080,120 1440,40 L1440,120 L0,120 Z" fill="#FFFFFF"/>
+    </svg>
+  </header>
+
+  <main>
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-copy">
+        <h1 class="hero-title">
+          Evalúa. Comprende.<br />
+          Mejora tu <span class="accent">cumplimiento.</span>
+        </h1>
+        <p class="hero-text">
+          DataLex 1581 te guía paso a paso para medir el
+          nivel de cumplimiento de tu organización frente
+          a la Ley 1581 de 2012
+        </p>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <!-- Escudo 3D principal -->
+        <svg class="hero-shield" viewBox="0 0 280 300" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="heroFace" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#60A5FA"/>
+              <stop offset="55%" stop-color="#2563EB"/>
+              <stop offset="100%" stop-color="#1E3A8A"/>
+            </linearGradient>
+            <linearGradient id="heroSide" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1E40AF"/>
+              <stop offset="100%" stop-color="#152C6B"/>
+            </linearGradient>
+            <linearGradient id="heroGloss" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fff" stop-opacity=".55"/>
+              <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+            </linearGradient>
+            <ellipse id="shadow" />
+          </defs>
+
+          <!-- Sombra base -->
+          <ellipse cx="140" cy="278" rx="95" ry="16" fill="#BFD4F5" opacity=".55"/>
+
+          <!-- Cara lateral (profundidad 3D) -->
+          <path d="M150 18 L256 56 V150 C256 214 210 256 150 286 Z" fill="url(#heroSide)"/>
+          <!-- Cara frontal -->
+          <path d="M138 14 L34 52 V146 C34 210 80 252 138 282 C196 252 242 210 242 146 V52 Z" fill="url(#heroFace)"/>
+          <!-- Brillo superior -->
+          <path d="M138 14 L34 52 V146 C34 176 44 200 60 220 C70 120 110 70 168 40 Z" fill="url(#heroGloss)"/>
+
+          <!-- Candado -->
+          <rect x="106" y="146" width="66" height="56" rx="9" fill="#EAF2FF"/>
+          <path d="M116 146 V128 a23 23 0 0 1 46 0 V146" fill="none" stroke="#EAF2FF" stroke-width="13"/>
+          <circle cx="139" cy="170" r="9" fill="#2563EB"/>
+          <rect x="135.5" y="170" width="7" height="18" rx="3.5" fill="#2563EB"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ===================== BENEFICIOS ===================== -->
+    <section class="benefits">
+      <h2 class="benefits-title">¿Qué obtendrás con DataLex 1581?</h2>
+
+      <div class="benefits-grid">
+        <article class="benefit">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="6" y="8" width="36" height="26" rx="5" fill="none" stroke="#2563EB" stroke-width="3"/>
+              <path d="M16 34 L16 42 L25 34" fill="none" stroke="#2563EB" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <line x1="14" y1="17" x2="34" y2="17" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+              <line x1="14" y1="24" x2="28" y2="24" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-name">Diagnóstico Inteligente</h3>
+          <p class="benefit-text">Conversación guiada por IA que entiende tu organización</p>
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="10" y1="34" x2="10" y2="26" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+              <line x1="19" y1="34" x2="19" y2="18" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+              <line x1="28" y1="34" x2="28" y2="22" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+              <line x1="37" y1="34" x2="37" y2="12" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="benefit-name">Resultados claros</h3>
+          <p class="benefit-text">Conoce tu nivel de cumplimiento de forma cuantificable</p>
+        </article>
+
+        <article class="benefit">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M24 5 L40 11 V23 C40 33 33 40 24 44 C15 40 8 33 8 23 V11 Z" fill="none" stroke="#2563EB" stroke-width="3" stroke-linejoin="round"/>
+              <line x1="24" y1="16" x2="24" y2="27" stroke="#2563EB" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="24" cy="33" r="2" fill="#2563EB"/>
+            </svg>
+          </div>
+          <h3 class="benefit-name">Recomendaciones prácticas</h3>
+          <p class="benefit-text">Recibe acciones específicas para cerrar brechas.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta">
+      <div class="cta-shield" aria-hidden="true">
+        <svg viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ctaShield" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#1E40AF"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="url(#ctaShield)"/>
+          <rect x="22" y="33" width="20" height="17" rx="3" fill="#fff"/>
+          <path d="M25 33 V27 a7 7 0 0 1 14 0 V33" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="32" cy="40" r="3" fill="#1E40AF"/>
+          <rect x="31" y="40" width="2" height="6" rx="1" fill="#1E40AF"/>
+        </svg>
+      </div>
+
+      <div class="cta-copy">
+        <h3 class="cta-title">Comienza tu autodiagnóstico ahora</h3>
+        <p class="cta-text">
+          Registra tu empresa y empieza a evaluar
+          tu cumplimiento de manera rápida,
+          segura y confiable
+        </p>
+      </div>
+
+      <a class="btn-primary" href="#" data-go="registro">Regístrate aquí</a>
+    </section>
+  </main>
+
+
+  </section>
+
+  <section id="screen-registro" class="screen">
+
+
+  <div class="auth-shell">
+    <div class="auth-card">
+
+      <!-- ============ PANEL IZQUIERDO (marca) ============ -->
+      <aside class="auth-aside">
+        <a class="aside-brand" href="#" data-go="inicio" aria-label="DataLex 1581 — inicio">
+          <svg class="aside-shield" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="logoShield" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#3B82F6"/>
+                <stop offset="100%" stop-color="#1E40AF"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="url(#logoShield)"/>
+            <rect x="22" y="33" width="20" height="17" rx="3" fill="#fff"/>
+            <path d="M25 33 V27 a7 7 0 0 1 14 0 V33" fill="none" stroke="#fff" stroke-width="4"/>
+            <circle cx="32" cy="40" r="3" fill="#1E40AF"/>
+            <rect x="31" y="40" width="2" height="6" rx="1" fill="#1E40AF"/>
+          </svg>
+          <span class="aside-brand-text">
+            <span class="aside-name"><span class="aside-name-light">DataLex</span> <span class="aside-name-accent">1581</span></span>
+            <span class="aside-tagline">Autodiagnóstico inteligente<br />para la protección de datos</span>
+          </span>
+        </a>
+
+        <ul class="features">
+          <li class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 6 h18 a2 2 0 0 1 2 2 v9 a2 2 0 0 1 -2 2 h-9 l-5 4 v-4 h-4 a2 2 0 0 1 -2 -2 v-9 a2 2 0 0 1 2 -2 Z" fill="#fff"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="feature-title">Entrevista inteligente</h3>
+              <p class="feature-text">La IA te hace las preguntas correctas para entender tu organización.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="14" cy="14" r="10" fill="none" stroke="#fff" stroke-width="2.5"/>
+                <circle cx="14" cy="14" r="5" fill="none" stroke="#fff" stroke-width="2.5"/>
+                <circle cx="14" cy="14" r="1.6" fill="#fff"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="feature-title">Evaluación precisa</h3>
+              <p class="feature-text">Convierte tus respuestas en un diagnóstico cuantificable.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="6" y1="21" x2="6" y2="15" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                <line x1="12" y1="21" x2="12" y2="10" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                <line x1="18" y1="21" x2="18" y2="13" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+                <line x1="24" y1="21" x2="24" y2="7" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="feature-title">Informe detallado</h3>
+              <p class="feature-text">Obtén un reporte completo con brechas y recomendaciones.</p>
+            </div>
+          </li>
+
+          <li class="feature">
+            <span class="feature-icon">
+              <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M14 3 L24 7 V14 C24 20 19.5 24.5 14 26 C8.5 24.5 4 20 4 14 V7 Z" fill="#fff"/>
+                <path d="M9.5 14 l3 3 l6 -6" fill="none" stroke="#1E40AF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <h3 class="feature-title">Seguridad y confianza</h3>
+              <p class="feature-text">Tu información está protegida y no será compartida.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="aside-help">
+          <p class="aside-help-title">¿Tienes dudas?</p>
+          <p class="aside-help-text">Contáctanos en <a href="mailto:soporte@datalex1581.com">soporte@datalex1581.com</a></p>
+        </div>
+      </aside>
+
+      <!-- ============ PANEL DERECHO (formulario) ============ -->
+      <section class="auth-main">
+        <div class="law-badge">
+          <span>Ley 1581 de 2012<br />Colombia</span>
+          <svg class="flag" viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg" aria-label="Bandera de Colombia">
+            <rect width="30" height="10" fill="#FCD116"/>
+            <rect y="10" width="30" height="5" fill="#003893"/>
+            <rect y="15" width="30" height="5" fill="#CE1126"/>
+          </svg>
         </div>
 
-        <div id="googleButton" class="google-slot"></div>
+        <form class="login-form" action="#" novalidate>
+          <h1 class="form-title">Inicia sesión</h1>
+          <p class="form-subtitle">Ingresa tus credenciales para continuar</p>
 
-        <div class="status-row">
-          <span id="authStatus" class="status">Sin autenticar</span>
-          <button id="checkMeButton" type="button" disabled>Probar /auth/me</button>
-        </div>
-      </section>
+          <!-- Nombre de la empresa -->
+          <label class="field-label" for="empresa">Nombre de la empresa</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="3" width="11" height="18" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <rect x="15" y="9" width="5" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="7" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="7" y1="11" x2="12" y2="11" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="7" y1="15" x2="12" y2="15" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+            <input id="empresa" type="text" placeholder="Escribe el nombre de tu empresa" autocomplete="organization" />
+          </div>
 
-      <section class="panel chat-panel">
-        <header>
-          <p class="eyebrow">Pregunta local</p>
-          <h2>Chat</h2>
-        </header>
+          <!-- NIT -->
+          <label class="field-label" for="nit">NIT de la empresa</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="8.5" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M5.5 15 a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="14" y1="10" x2="18" y2="10" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="14" y1="14" x2="18" y2="14" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+            <input id="nit" type="text" placeholder="Ej. 900123456-7" inputmode="numeric" />
+          </div>
 
-        <div id="messages" class="messages"></div>
+          <label class="field-label" for="tamanoEmpresa">Tamaño de la empresa</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 20 V8 l5 -3 l5 3 v12" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M14 20 v-7 l6 -3 v10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="7" y1="11" x2="7" y2="11.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+              <line x1="11" y1="11" x2="11" y2="11.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+            <select id="tamanoEmpresa" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Microempresa">Microempresa</option>
+              <option value="Pequeña empresa">Pequeña empresa</option>
+              <option value="Mediana empresa">Mediana empresa</option>
+              <option value="Gran empresa">Gran empresa</option>
+            </select>
+          </div>
 
-        <form id="chatForm" class="chat-form">
-          <textarea id="messageInput" rows="3" placeholder="Escribe una pregunta para llama3.2..." disabled></textarea>
-          <button id="sendButton" type="submit" disabled>Enviar</button>
+          <label class="field-label" for="sector">Sector</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M4 12 h16 M12 4 c3 4 3 12 0 16 M12 4 c-3 4 -3 12 0 16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <select id="sector" required>
+              <option value="">Selecciona un sector</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Salud">Salud</option>
+              <option value="Educación">Educación</option>
+              <option value="Financiero">Financiero</option>
+              <option value="Comercio">Comercio</option>
+              <option value="Servicios">Servicios</option>
+              <option value="Industrial">Industrial</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+
+          <!-- Usuario -->
+          <label class="field-label" for="usuario">Usuario</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <input id="usuario" type="text" placeholder="Ingresa tu usuario" autocomplete="username" />
+          </div>
+
+          <!-- Contraseña -->
+          <label class="field-label" for="password">Contraseña</label>
+          <div class="field">
+            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+            <input id="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" />
+            <button type="button" class="toggle-pass" aria-label="Mostrar contraseña">
+              <svg class="eye" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                <line class="eye-slash" x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Opciones -->
+          <div class="form-options">
+            <label class="remember">
+              <input type="checkbox" />
+              <span>Recordarme</span>
+            </label>
+            <a class="link" href="#">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <!-- Botón principal -->
+          <button type="submit" class="btn-login">
+            Ingresar
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="4" y1="12" x2="19" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M13 6 L19 12 L13 18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Divisor -->
+          <div class="divider"><span>o continúa con</span></div>
+
+          <!-- Google -->
+          <button type="button" class="btn-google">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path fill="#4285F4" d="M22.5 12.2c0-.7-.06-1.4-.18-2.05H12v3.9h5.9a5 5 0 0 1-2.18 3.3v2.74h3.52c2.06-1.9 3.26-4.7 3.26-7.89Z"/>
+              <path fill="#34A853" d="M12 23c2.94 0 5.41-.97 7.22-2.64l-3.52-2.74c-.98.66-2.23 1.05-3.7 1.05-2.85 0-5.26-1.92-6.12-4.5H2.24v2.83A11 11 0 0 0 12 23Z"/>
+              <path fill="#FBBC05" d="M5.88 14.17a6.6 6.6 0 0 1 0-4.34V7H2.24a11 11 0 0 0 0 9.99l3.64-2.82Z"/>
+              <path fill="#EA4335" d="M12 5.38c1.6 0 3.04.55 4.18 1.63l3.12-3.12C17.4 2.1 14.94 1 12 1A11 11 0 0 0 2.24 7l3.64 2.83C6.74 7.3 9.15 5.38 12 5.38Z"/>
+            </svg>
+            Continuar con Google
+          </button>
+
+          <p class="signup">¿Aún no tienes cuenta? <a class="link" href="#">Regístrate aquí</a></p>
         </form>
       </section>
-    </main>
 
-    <script src="./app.js"></script>
-  </body>
+    </div>
+
+    <!-- ============ PIE ============ -->
+    <footer class="auth-footer">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      Tus datos están protegidos y serán tratados conforme a la Ley 1581 de 2012.
+    </footer>
+  </div>
+
+  
+
+
+  </section>
+
+  <section id="screen-diag" class="screen">
+
+
+  <div class="diag-app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <a class="side-logo" href="#" data-go="inicio" aria-label="DataLex 1581 — inicio">
+        <svg class="side-shield" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoShield" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#1E40AF"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="url(#logoShield)"/>
+          <rect x="22" y="33" width="20" height="17" rx="3" fill="#fff"/>
+          <path d="M25 33 V27 a7 7 0 0 1 14 0 V33" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="32" cy="40" r="3" fill="#1E40AF"/>
+          <rect x="31" y="40" width="2" height="6" rx="1" fill="#1E40AF"/>
+        </svg>
+        <span class="side-name">DataLex 1581</span>
+        <span class="side-tagline">Autodiagnóstico inteligente para la<br />protección de datos</span>
+      </a>
+
+      <!-- Estado del diagnóstico -->
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Estado del Diagnóstico</span>
+          <span class="card-pct">45%</span>
+        </div>
+        <div class="progress"><span style="width:45%"></span></div>
+
+        <div class="rings">
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="144.7 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">72%</span>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#2DD4BF" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="70.3 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">35%</span>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#60A5FA" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="20.1 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">10%</span>
+          </div>
+        </div>
+        <div class="ring-labels">
+          <span>Política de tratamiento</span>
+          <span>Privacidad desde el diseño</span>
+          <span>Gobernanza</span>
+        </div>
+      </div>
+
+      <!-- Información de la empresa -->
+      <div class="card">
+        <h3 class="card-title">Información de la empresa</h3>
+        <dl class="info">
+          <div><dt>Empresa</dt><dd id="infoEmpresa">Sin iniciar</dd></div>
+          <div><dt>Sector</dt><dd id="infoSector">Sin informar</dd></div>
+          <div><dt>Tamaño</dt><dd id="infoTamano">Sin informar</dd></div>
+          <div><dt>Evaluación</dt><dd id="infoEstado">En proceso</dd></div>
+          <div><dt>Tiempo estimado</dt><dd>12 minutos</dd></div>
+        </dl>
+      </div>
+
+      <p class="side-legal">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        Toda la información suministrada será tratada conforme a la Ley 1581 de 2012.
+      </p>
+    </aside>
+
+    <!-- ============ CHAT ============ -->
+    <section class="chat">
+      <!-- Encabezado -->
+      <header class="chat-head">
+        <div class="chat-head-left">
+          <span class="bot-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="5" y="8" width="14" height="11" rx="3" fill="#fff"/>
+              <circle cx="9.5" cy="13" r="1.4" fill="#1E40AF"/>
+              <circle cx="14.5" cy="13" r="1.4" fill="#1E40AF"/>
+              <line x1="12" y1="4" x2="12" y2="8" stroke="#fff" stroke-width="2"/>
+              <circle cx="12" cy="3.5" r="1.5" fill="#fff"/>
+            </svg>
+          </span>
+          <div>
+            <p class="chat-head-name">DataLex AI</p>
+            <p class="chat-head-role">Asistente Inteligente de Diagnóstico</p>
+          </div>
+        </div>
+        <div class="chat-head-right">
+          <div class="meta">
+            <p><span>Empresa:</span> <strong>Tecnología ABC SAS</strong></p>
+            <p><span>Estado:</span> <strong class="dot-green">● En evaluación</strong></p>
+          </div>
+          <span class="ia-active"><span class="pulse"></span> IA Activa</span>
+        </div>
+      </header>
+
+      <!-- Hilo de mensajes -->
+      <div class="thread" id="thread">
+
+        <div class="banner">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="#22C55E"/>
+            <path d="M8 12.5 l2.5 2.5 l5 -5.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p><strong>Política de Tratamiento completada.</strong> Cumplimiento preliminar: 82%.<br />Continuaremos con Privacidad desde el Diseño.</p>
+        </div>
+
+        <!-- Bot -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">
+            <p>Hola 👋 Soy DataLex AI. Mi función es ayudarte a evaluar el nivel de cumplimiento de tu organización frente a la <strong>Ley 1581 de 2012</strong> sobre protección de datos personales.</p>
+            <p>Durante esta conversación realizaré algunas preguntas para comprender cómo tu organización gestiona la información personal y así generar un diagnóstico basado en Privacy by Design.</p>
+            <p>No existen respuestas correctas o incorrectas. Nuestro objetivo es identificar oportunidades de mejora y generar recomendaciones prácticas.</p>
+            <p>¿Estás listo para comenzar?</p>
+          </div>
+        </div>
+
+        <!-- Bot con tooltip -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">¿Cuál es el nombre de la empresa?</div>
+          <div class="tip">
+            <p><span>Pregunta actual:</span> 2 de 11</p>
+            <p><span>Dominio:</span> Política de Tratamiento</p>
+            <p><span>Peso:</span> 40%</p>
+          </div>
+        </div>
+
+        <!-- Usuario -->
+        <div class="msg msg-user">
+          <div class="bubble bubble-user">Tecnología ABC SAS</div>
+          <span class="user-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" fill="none" stroke="#64748B" stroke-width="1.8"/>
+              <path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="#64748B" stroke-width="1.8"/>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Bot -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">¿La empresa cuenta con una Política de Tratamiento de Datos Personales?</div>
+        </div>
+
+        <!-- Escribiendo -->
+        <div class="typing">
+          <span class="dots"><i></i><i></i><i></i></span>
+          DataLex AI está escribiendo…
+        </div>
+      </div>
+
+      <!-- Entrada -->
+      <div class="composer">
+        <div class="composer-box">
+          <input id="answer" type="text" placeholder="Escribe tu respuesta..." />
+          <button class="icon-btn" type="button" aria-label="Dictar por voz">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 11 a6 6 0 0 0 12 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </button>
+          <button class="icon-btn" type="button" aria-label="Adjuntar archivo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 11 L11 20 a4 4 0 0 1 -6 -6 l9 -9 a3 3 0 0 1 4 4 l-9 9 a1.5 1.5 0 0 1 -2 -2 l8 -8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="send-btn" type="button" id="send">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 12 L20 4 L14 20 L11 13 Z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            Enviar
+          </button>
+          <button class="send-btn export-btn" type="button" id="exportAudit">
+            Exportar
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  
+
+
+  </section>
+
+  <script>
+
+  const screens = {
+    inicio:   document.getElementById('screen-inicio'),
+    registro: document.getElementById('screen-registro'),
+    diag:     document.getElementById('screen-diag'),
+  };
+  function go(name){
+    Object.values(screens).forEach(s => s.classList.remove('is-active'));
+    screens[name].classList.add('is-active');
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  }
+  // Navegacion por data-go
+  document.querySelectorAll('[data-go]').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); go(el.dataset.go); });
+  });
+
+  // Mostrar / ocultar contrasena
+  const toggle = document.querySelector('.toggle-pass');
+  const pass = document.getElementById('password');
+  if (toggle && pass) toggle.addEventListener('click', () => {
+    const show = pass.type === 'password';
+    pass.type = show ? 'text' : 'password';
+    toggle.classList.toggle('is-on', show);
+    toggle.setAttribute('aria-label', show ? 'Ocultar contrasena' : 'Mostrar contrasena');
+  });
+
+  const backendUrl = window.location.origin.startsWith('http') ? window.location.origin : 'http://127.0.0.1:8000';
+  const input = document.getElementById('answer');
+  const thread = document.getElementById('thread');
+  const sendButton = document.getElementById('send');
+  const exportButton = document.getElementById('exportAudit');
+  const typing = thread ? thread.querySelector('.typing') : null;
+  let auditProfile = null;
+  let chatHistory = [];
+
+  function setBusy(isBusy) {
+    if (sendButton) sendButton.disabled = isBusy;
+    if (exportButton) exportButton.disabled = isBusy || chatHistory.length === 0;
+    if (input) input.disabled = isBusy;
+    if (typing) typing.style.display = isBusy ? 'flex' : 'none';
+  }
+
+  function scrollThread() {
+    if (thread) thread.scrollTop = thread.scrollHeight;
+  }
+
+  function clearThread() {
+    if (!thread || !typing) return;
+    Array.from(thread.children).forEach(child => {
+      if (child !== typing) child.remove();
+    });
+  }
+
+  function addMessage(role, content) {
+    if (!thread || !typing) return;
+    const msg = document.createElement('div');
+    msg.className = role === 'user' ? 'msg msg-user' : 'msg msg-bot';
+
+    if (role === 'user') {
+      msg.innerHTML = '<div class="bubble bubble-user"></div>' +
+        '<span class="user-avatar"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="12" cy="8" r="4" fill="none" stroke="#64748B" stroke-width="1.8"/>' +
+        '<path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="#64748B" stroke-width="1.8"/></svg></span>';
+      msg.querySelector('.bubble-user').textContent = content;
+    } else {
+      msg.innerHTML = '<span class="msg-tag">Bot</span><div class="bubble bubble-bot"></div>';
+      msg.querySelector('.bubble-bot').textContent = content;
+    }
+
+    thread.insertBefore(msg, typing);
+    scrollThread();
+  }
+
+  function addSystemMessage(content) {
+    if (!thread || !typing) return;
+    const banner = document.createElement('div');
+    banner.className = 'banner';
+    banner.innerHTML = '<p></p>';
+    banner.querySelector('p').textContent = content;
+    thread.insertBefore(banner, typing);
+    scrollThread();
+  }
+
+  async function apiPost(path, body) {
+    const response = await fetch(`${backendUrl}${path}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.detail || `Error HTTP ${response.status}`);
+    return data;
+  }
+
+  function getProfile() {
+    return {
+      empresa: (document.getElementById('empresa').value || '').trim(),
+      nit: (document.getElementById('nit').value || '').trim(),
+      usuario: (document.getElementById('usuario').value || '').trim(),
+      tamano_empresa: (document.getElementById('tamanoEmpresa').value || '').trim(),
+      sector: (document.getElementById('sector').value || '').trim(),
+    };
+  }
+
+  function validateProfile(profile) {
+    if (!profile.empresa || !profile.usuario || !profile.tamano_empresa || !profile.sector) {
+      throw new Error('Completa empresa, usuario, tamaño de empresa y sector.');
+    }
+  }
+
+  function updateCompanyInfo(profile) {
+    const infoEmpresa = document.getElementById('infoEmpresa');
+    const infoSector = document.getElementById('infoSector');
+    const infoTamano = document.getElementById('infoTamano');
+    const metaEmpresa = document.querySelector('#screen-diag .meta strong');
+    if (infoEmpresa) infoEmpresa.textContent = profile.empresa;
+    if (infoSector) infoSector.textContent = profile.sector;
+    if (infoTamano) infoTamano.textContent = profile.tamano_empresa;
+    if (metaEmpresa) metaEmpresa.textContent = profile.empresa;
+  }
+
+  document.querySelector('.login-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    try {
+      auditProfile = getProfile();
+      validateProfile(auditProfile);
+      updateCompanyInfo(auditProfile);
+      clearThread();
+      chatHistory = [];
+      go('diag');
+      setBusy(true);
+
+      const data = await apiPost('/audit/start', { profile: auditProfile });
+      chatHistory.push({ role: 'user', content: `Perfil de auditoría: ${auditProfile.empresa}, ${auditProfile.tamano_empresa}, sector ${auditProfile.sector}.` });
+      chatHistory.push({ role: 'assistant', content: data.answer });
+      addMessage('assistant', data.answer);
+    } catch (error) {
+      addSystemMessage(error.message);
+    } finally {
+      setBusy(false);
+    }
+  });
+
+  async function send() {
+    const text = input.value.trim();
+    if (!text || !auditProfile) return;
+    input.value = '';
+    addMessage('user', text);
+    setBusy(true);
+
+    try {
+      const data = await apiPost('/audit/chat', {
+        message: text,
+        history: chatHistory,
+        profile: auditProfile,
+      });
+      chatHistory.push({ role: 'user', content: text });
+      chatHistory.push({ role: 'assistant', content: data.answer });
+      addMessage('assistant', data.answer);
+    } catch (error) {
+      addSystemMessage(error.message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function exportAudit() {
+    if (!auditProfile || chatHistory.length === 0) return;
+    setBusy(true);
+    try {
+      const data = await apiPost('/audit/export', {
+        history: chatHistory,
+        profile: auditProfile,
+      });
+      chatHistory.push({ role: 'user', content: '[Solicitud de informe estructurado]' });
+      chatHistory.push({ role: 'assistant', content: data.answer });
+      addSystemMessage(`Exportación lista. Filas en matriz: ${data.matrix_rows}. Excel: ${data.excel_path}. PostgreSQL: ${data.postgres_saved ? 'guardado' : 'revisar logs'}.`);
+    } catch (error) {
+      addSystemMessage(error.message);
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  if (typing) typing.style.display = 'none';
+  if (exportButton) exportButton.disabled = true;
+  if (sendButton) sendButton.addEventListener('click', send);
+  if (exportButton) exportButton.addEventListener('click', exportAudit);
+  if (input) input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+
+  </script>
+</body>
 </html>
