@@ -8,13 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="login.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-
   <div class="auth-shell">
     <div class="auth-card">
-
-      <!-- ============ PANEL IZQUIERDO (marca) ============ -->
       <aside class="auth-aside">
         <a class="aside-brand" href="index.html" aria-label="DataLex 1581 — inicio">
           <svg class="aside-shield" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -45,10 +43,9 @@
             </span>
             <div>
               <h3 class="feature-title">Entrevista inteligente</h3>
-              <p class="feature-text">La IA te hace las preguntas correctas para entender tu organización.</p>
+              <p class="feature-text">La IA adapta las preguntas al perfil y a los riesgos de tu organización.</p>
             </div>
           </li>
-
           <li class="feature">
             <span class="feature-icon">
               <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -62,7 +59,6 @@
               <p class="feature-text">Convierte tus respuestas en un diagnóstico cuantificable.</p>
             </div>
           </li>
-
           <li class="feature">
             <span class="feature-icon">
               <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -73,11 +69,10 @@
               </svg>
             </span>
             <div>
-              <h3 class="feature-title">Informe detallado</h3>
-              <p class="feature-text">Obtén un reporte completo con brechas y recomendaciones.</p>
+              <h3 class="feature-title">Excel listo para usar</h3>
+              <p class="feature-text">Recibe evaluación y resumen, incluso si la base de datos no está disponible.</p>
             </div>
           </li>
-
           <li class="feature">
             <span class="feature-icon">
               <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -87,18 +82,17 @@
             </span>
             <div>
               <h3 class="feature-title">Seguridad y confianza</h3>
-              <p class="feature-text">Tu información está protegida y no será compartida.</p>
+              <p class="feature-text">También puedes entrar con tu cuenta de Google configurada.</p>
             </div>
           </li>
         </ul>
 
         <div class="aside-help">
-          <p class="aside-help-title">¿Tienes dudas?</p>
-          <p class="aside-help-text">Contáctanos en <a href="mailto:soporte@datalex1581.com">soporte@datalex1581.com</a></p>
+          <p class="aside-help-title">Ejecución local</p>
+          <p class="aside-help-text">Aplicación disponible en <strong>localhost:5173</strong></p>
         </div>
       </aside>
 
-      <!-- ============ PANEL DERECHO (formulario) ============ -->
       <section class="auth-main">
         <div class="law-badge">
           <span>Ley 1581 de 2012<br />Colombia</span>
@@ -109,54 +103,26 @@
           </svg>
         </div>
 
-        <form class="login-form" action="diagnostico.html" novalidate>
+        <form class="login-form" id="login-form" novalidate>
           <h1 class="form-title">Inicia sesión</h1>
-          <p class="form-subtitle">Ingresa tus credenciales para continuar</p>
+          <p class="form-subtitle">Ingresa con usuario y contraseña o usa Google</p>
 
-          <!-- Nombre de la empresa -->
-          <label class="field-label" for="empresa">Nombre de la empresa</label>
-          <div class="field">
-            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="3" width="11" height="18" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <rect x="15" y="9" width="5" height="12" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <line x1="7" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="7" y1="11" x2="12" y2="11" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="7" y1="15" x2="12" y2="15" stroke="currentColor" stroke-width="1.6"/>
-            </svg>
-            <input id="empresa" type="text" placeholder="Escribe el nombre de tu empresa" autocomplete="organization" />
-          </div>
-
-          <!-- NIT -->
-          <label class="field-label" for="nit">NIT de la empresa</label>
-          <div class="field">
-            <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-              <circle cx="8.5" cy="11" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M5.5 15 a3 3 0 0 1 6 0" fill="none" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="14" y1="10" x2="18" y2="10" stroke="currentColor" stroke-width="1.6"/>
-              <line x1="14" y1="14" x2="18" y2="14" stroke="currentColor" stroke-width="1.6"/>
-            </svg>
-            <input id="nit" type="text" placeholder="Ej. 900123456-7" inputmode="numeric" />
-          </div>
-
-          <!-- Usuario -->
           <label class="field-label" for="usuario">Usuario</label>
           <div class="field">
             <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
               <path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
             </svg>
-            <input id="usuario" type="text" placeholder="Ingresa tu usuario" autocomplete="username" />
+            <input id="usuario" name="username" type="text" placeholder="Ingresa tu usuario" autocomplete="username" required />
           </div>
 
-          <!-- Contraseña -->
           <label class="field-label" for="password">Contraseña</label>
           <div class="field">
             <svg class="field-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
               <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
             </svg>
-            <input id="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" />
+            <input id="password" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required />
             <button type="button" class="toggle-pass" aria-label="Mostrar contraseña">
               <svg class="eye" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path d="M2 12 C5 6 19 6 22 12 C19 18 5 18 2 12 Z" fill="none" stroke="currentColor" stroke-width="1.8"/>
@@ -166,17 +132,9 @@
             </button>
           </div>
 
-          <!-- Opciones -->
-          <div class="form-options">
-            <label class="remember">
-              <input type="checkbox" />
-              <span>Recordarme</span>
-            </label>
-            <a class="link" href="#">¿Olvidaste tu contraseña?</a>
-          </div>
+          <p class="auth-status" id="auth-status" role="alert" aria-live="polite"></p>
 
-          <!-- Botón principal -->
-          <button type="submit" class="btn-login">
+          <button type="submit" class="btn-login" id="login-button">
             Ingresar
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <line x1="4" y1="12" x2="19" y2="12" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
@@ -184,54 +142,118 @@
             </svg>
           </button>
 
-          <!-- Divisor -->
           <div class="divider"><span>o continúa con</span></div>
-
-          <!-- Google -->
-          <button type="button" class="btn-google">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path fill="#4285F4" d="M22.5 12.2c0-.7-.06-1.4-.18-2.05H12v3.9h5.9a5 5 0 0 1-2.18 3.3v2.74h3.52c2.06-1.9 3.26-4.7 3.26-7.89Z"/>
-              <path fill="#34A853" d="M12 23c2.94 0 5.41-.97 7.22-2.64l-3.52-2.74c-.98.66-2.23 1.05-3.7 1.05-2.85 0-5.26-1.92-6.12-4.5H2.24v2.83A11 11 0 0 0 12 23Z"/>
-              <path fill="#FBBC05" d="M5.88 14.17a6.6 6.6 0 0 1 0-4.34V7H2.24a11 11 0 0 0 0 9.99l3.64-2.82Z"/>
-              <path fill="#EA4335" d="M12 5.38c1.6 0 3.04.55 4.18 1.63l3.12-3.12C17.4 2.1 14.94 1 12 1A11 11 0 0 0 2.24 7l3.64 2.83C6.74 7.3 9.15 5.38 12 5.38Z"/>
-            </svg>
-            Continuar con Google
-          </button>
-
-          <p class="signup">¿Aún no tienes cuenta? <a class="link" href="#">Regístrate aquí</a></p>
+          <div id="google-button" class="google-button" aria-label="Inicio de sesión con Google"></div>
+          <p class="google-help" id="google-help">Cargando inicio de sesión con Google…</p>
         </form>
       </section>
-
     </div>
 
-    <!-- ============ PIE ============ -->
     <footer class="auth-footer">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
         <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
       </svg>
-      Tus datos están protegidos y serán tratados conforme a la Ley 1581 de 2012.
+      Tus datos serán tratados conforme a la Ley 1581 de 2012.
     </footer>
   </div>
 
   <script>
-    // Mostrar / ocultar contraseña
-    const toggle = document.querySelector('.toggle-pass');
-    const pass = document.getElementById('password');
-    toggle.addEventListener('click', () => {
-      const show = pass.type === 'password';
-      pass.type = show ? 'text' : 'password';
-      toggle.classList.toggle('is-on', show);
-      toggle.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
-    });
-    // Al completar el formulario e "Ingresar", ir al panel de diagnóstico
-    document.querySelector('.login-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const empresa = (document.getElementById('empresa').value || '').trim();
-      const q = empresa ? ('?empresa=' + encodeURIComponent(empresa)) : '';
-      window.location.href = 'diagnostico.html' + q;
-    });
-  </script>
+    const storageKey = 'datalex_auth';
+    const apiBase = location.port === '8000' ? location.origin : 'http://localhost:8000';
+    const statusNode = document.getElementById('auth-status');
+    const loginButton = document.getElementById('login-button');
 
+    function showStatus(message, isError = true) {
+      statusNode.textContent = message || '';
+      statusNode.classList.toggle('is-error', isError);
+    }
+
+    async function api(path, options = {}) {
+      const response = await fetch(`${apiBase}${path}`, {
+        ...options,
+        headers: { 'Content-Type': 'application/json', ...(options.headers || {}) }
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.detail || 'No fue posible completar el inicio de sesión.');
+      return data;
+    }
+
+    function completeLogin(data) {
+      localStorage.setItem(storageKey, JSON.stringify(data));
+      window.location.href = 'diagnostico.html';
+    }
+
+    document.querySelector('.toggle-pass').addEventListener('click', event => {
+      const input = document.getElementById('password');
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      event.currentTarget.classList.toggle('is-on', show);
+      event.currentTarget.setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+
+    document.getElementById('login-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const username = document.getElementById('usuario').value.trim();
+      const password = document.getElementById('password').value;
+      if (!username || !password) return showStatus('Escribe el usuario y la contraseña.');
+      showStatus('Validando credenciales…', false);
+      loginButton.disabled = true;
+      try {
+        completeLogin(await api('/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ username, password })
+        }));
+      } catch (error) {
+        showStatus(error.message);
+        loginButton.disabled = false;
+      }
+    });
+
+    async function handleGoogleCredential(response) {
+      showStatus('Validando la cuenta de Google…', false);
+      try {
+        completeLogin(await api('/auth/google', {
+          method: 'POST',
+          body: JSON.stringify({ credential: response.credential })
+        }));
+      } catch (error) {
+        showStatus(error.message);
+      }
+    }
+
+    async function initializeGoogle() {
+      const help = document.getElementById('google-help');
+      try {
+        const config = await api('/auth/config');
+        if (!config.google_client_id) {
+          help.textContent = 'Configura GOOGLE_CLIENT_ID para habilitar Google.';
+          return;
+        }
+        for (let attempt = 0; attempt < 50 && !window.google?.accounts?.id; attempt += 1) {
+          await new Promise(resolve => setTimeout(resolve, 100));
+        }
+        if (!window.google?.accounts?.id) throw new Error('No se pudo cargar Google Identity Services.');
+        google.accounts.id.initialize({
+          client_id: config.google_client_id,
+          callback: handleGoogleCredential
+        });
+        google.accounts.id.renderButton(document.getElementById('google-button'), {
+          type: 'standard',
+          theme: 'outline',
+          size: 'large',
+          text: 'continue_with',
+          shape: 'rectangular',
+          locale: 'es',
+          width: 360
+        });
+        help.hidden = true;
+      } catch (error) {
+        help.textContent = error.message;
+      }
+    }
+
+    initializeGoogle();
+  </script>
 </body>
 </html>

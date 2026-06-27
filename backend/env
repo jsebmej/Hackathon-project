@@ -1,0 +1,9 @@
+HOST=prueba-azet.ckfw8o8262cj.us-east-1.rds.amazonaws.com
+PORT=5432
+DB_NAME=prod
+DB_USER=postgres
+DB_PASSWORD=pruebaazet2026
+GOOGLE_CLIENT_ID=767264679012-d700fenik19cidtgpeakj3emq9c1hi2f.apps.googleusercontent.com
+FRONTEND_ORIGINS=http://localhost:5173,http://localhost:3000
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=DataLex1581_v2

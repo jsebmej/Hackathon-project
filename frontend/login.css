@@ -315,6 +315,16 @@ a { text-decoration: none; }
 .btn-login svg { width: 20px; height: 20px; }
 .btn-login:hover { background: var(--green-600); transform: translateY(-1px); }
 .btn-login:focus-visible { outline: 3px solid var(--blue-500); outline-offset: 3px; }
+.btn-login:disabled { opacity: .65; cursor: wait; transform: none; }
+
+.auth-status {
+  min-height: 20px;
+  margin: -6px 0 12px;
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--green-600);
+}
+.auth-status.is-error { color: #DC2626; }
 
 /* Divisor */
 .divider {
@@ -353,6 +363,18 @@ a { text-decoration: none; }
 }
 .btn-google svg { width: 20px; height: 20px; }
 .btn-google:hover { background: var(--bg-soft); border-color: var(--gray-400); }
+
+.google-button {
+  min-height: 44px;
+  display: flex;
+  justify-content: center;
+}
+.google-help {
+  margin: 8px 0 0;
+  text-align: center;
+  color: var(--gray-400);
+  font-size: 12px;
+}
 
 /* Registro */
 .signup {
