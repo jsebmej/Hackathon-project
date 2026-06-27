@@ -22,20 +22,17 @@ BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
 try:
-    from .datalex_logger_1 import PROMPT_INFORME, fila_a_columnas, guardar_exportacion_web, guardar_intercambio_web
+    from .datalex_auditoria import PROMPT_INFORME, fila_a_columnas, guardar_exportacion_web, guardar_intercambio_web
 except ImportError:
-    try:
-        from datalex_logger_1 import PROMPT_INFORME, fila_a_columnas, guardar_exportacion_web, guardar_intercambio_web
-    except ImportError as exc:
-        PROMPT_INFORME = None
-        fila_a_columnas = None
-        guardar_exportacion_web = None
-        guardar_intercambio_web = None
-        DATALEX_LOGGER_IMPORT_ERROR = exc
-    else:
-        DATALEX_LOGGER_IMPORT_ERROR = None
+    
+    PROMPT_INFORME = None
+    fila_a_columnas = None
+    guardar_exportacion_web = None
+    guardar_intercambio_web = None
+    DATALEX_LOGGER_IMPORT_ERROR = exc
 else:
     DATALEX_LOGGER_IMPORT_ERROR = None
+
 
 
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
