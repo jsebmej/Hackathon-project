@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico — DataLex 1581</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="diagnostico.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar">
+      <a class="side-logo" href="index.html" aria-label="DataLex 1581 — inicio">
+        <svg class="side-shield" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="logoShield" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#3B82F6"/>
+              <stop offset="100%" stop-color="#1E40AF"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 2 L60 12 V34 C60 52 47 64 32 70 C17 64 4 52 4 34 V12 Z" fill="url(#logoShield)"/>
+          <rect x="22" y="33" width="20" height="17" rx="3" fill="#fff"/>
+          <path d="M25 33 V27 a7 7 0 0 1 14 0 V33" fill="none" stroke="#fff" stroke-width="4"/>
+          <circle cx="32" cy="40" r="3" fill="#1E40AF"/>
+          <rect x="31" y="40" width="2" height="6" rx="1" fill="#1E40AF"/>
+        </svg>
+        <span class="side-name">DataLex 1581</span>
+        <span class="side-tagline">Autodiagnóstico inteligente para la<br />protección de datos</span>
+      </a>
+
+      <!-- Estado del diagnóstico -->
+      <div class="card">
+        <div class="card-head">
+          <span class="card-title">Estado del Diagnóstico</span>
+          <span class="card-pct">45%</span>
+        </div>
+        <div class="progress"><span style="width:45%"></span></div>
+
+        <div class="rings">
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#22C55E" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="144.7 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">72%</span>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#2DD4BF" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="70.3 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">35%</span>
+          </div>
+          <div class="ring">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="7"/>
+              <circle cx="40" cy="40" r="32" fill="none" stroke="#60A5FA" stroke-width="7" stroke-linecap="round"
+                      stroke-dasharray="20.1 201" transform="rotate(-90 40 40)"/>
+            </svg>
+            <span class="ring-pct">10%</span>
+          </div>
+        </div>
+        <div class="ring-labels">
+          <span>Política de tratamiento</span>
+          <span>Privacidad desde el diseño</span>
+          <span>Gobernanza</span>
+        </div>
+      </div>
+
+      <!-- Información de la empresa -->
+      <div class="card">
+        <h3 class="card-title">Información de la empresa</h3>
+        <dl class="info">
+          <div><dt>Empresa</dt><dd>Tecnología ABC SAS</dd></div>
+          <div><dt>Sector</dt><dd>Tecnología</dd></div>
+          <div><dt>Evaluación</dt><dd>En proceso</dd></div>
+          <div><dt>Tiempo estimado</dt><dd>12 minutos</dd></div>
+        </dl>
+      </div>
+
+      <p class="side-legal">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <path d="M8 11 V8 a4 4 0 0 1 8 0 V11" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        </svg>
+        Toda la información suministrada será tratada conforme a la Ley 1581 de 2012.
+      </p>
+    </aside>
+
+    <!-- ============ CHAT ============ -->
+    <section class="chat">
+      <!-- Encabezado -->
+      <header class="chat-head">
+        <div class="chat-head-left">
+          <span class="bot-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="5" y="8" width="14" height="11" rx="3" fill="#fff"/>
+              <circle cx="9.5" cy="13" r="1.4" fill="#1E40AF"/>
+              <circle cx="14.5" cy="13" r="1.4" fill="#1E40AF"/>
+              <line x1="12" y1="4" x2="12" y2="8" stroke="#fff" stroke-width="2"/>
+              <circle cx="12" cy="3.5" r="1.5" fill="#fff"/>
+            </svg>
+          </span>
+          <div>
+            <p class="chat-head-name">DataLex AI</p>
+            <p class="chat-head-role">Asistente Inteligente de Diagnóstico</p>
+          </div>
+        </div>
+        <div class="chat-head-right">
+          <div class="meta">
+            <p><span>Empresa:</span> <strong>Tecnología ABC SAS</strong></p>
+            <p><span>Estado:</span> <strong class="dot-green">● En evaluación</strong></p>
+          </div>
+          <span class="ia-active"><span class="pulse"></span> IA Activa</span>
+        </div>
+      </header>
+
+      <!-- Hilo de mensajes -->
+      <div class="thread" id="thread">
+
+        <div class="banner">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" fill="#22C55E"/>
+            <path d="M8 12.5 l2.5 2.5 l5 -5.5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <p><strong>Política de Tratamiento completada.</strong> Cumplimiento preliminar: 82%.<br />Continuaremos con Privacidad desde el Diseño.</p>
+        </div>
+
+        <!-- Bot -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">
+            <p>Hola 👋 Soy DataLex AI. Mi función es ayudarte a evaluar el nivel de cumplimiento de tu organización frente a la <strong>Ley 1581 de 2012</strong> sobre protección de datos personales.</p>
+            <p>Durante esta conversación realizaré algunas preguntas para comprender cómo tu organización gestiona la información personal y así generar un diagnóstico basado en Privacy by Design.</p>
+            <p>No existen respuestas correctas o incorrectas. Nuestro objetivo es identificar oportunidades de mejora y generar recomendaciones prácticas.</p>
+            <p>¿Estás listo para comenzar?</p>
+          </div>
+        </div>
+
+        <!-- Bot con tooltip -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">¿Cuál es el nombre de la empresa?</div>
+          <div class="tip">
+            <p><span>Pregunta actual:</span> 2 de 11</p>
+            <p><span>Dominio:</span> Política de Tratamiento</p>
+            <p><span>Peso:</span> 40%</p>
+          </div>
+        </div>
+
+        <!-- Usuario -->
+        <div class="msg msg-user">
+          <div class="bubble bubble-user">Tecnología ABC SAS</div>
+          <span class="user-avatar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" fill="none" stroke="#64748B" stroke-width="1.8"/>
+              <path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="#64748B" stroke-width="1.8"/>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Bot -->
+        <div class="msg msg-bot">
+          <span class="msg-tag">Bot</span>
+          <div class="bubble bubble-bot">¿La empresa cuenta con una Política de Tratamiento de Datos Personales?</div>
+        </div>
+
+        <!-- Escribiendo -->
+        <div class="typing">
+          <span class="dots"><i></i><i></i><i></i></span>
+          DataLex AI está escribiendo…
+        </div>
+      </div>
+
+      <!-- Entrada -->
+      <div class="composer">
+        <div class="composer-box">
+          <input id="answer" type="text" placeholder="Escribe tu respuesta..." />
+          <button class="icon-btn" type="button" aria-label="Dictar por voz">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M6 11 a6 6 0 0 0 12 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+              <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </button>
+          <button class="icon-btn" type="button" aria-label="Adjuntar archivo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 11 L11 20 a4 4 0 0 1 -6 -6 l9 -9 a3 3 0 0 1 4 4 l-9 9 a1.5 1.5 0 0 1 -2 -2 l8 -8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="send-btn" type="button" id="send">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 12 L20 4 L14 20 L11 13 Z" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            Enviar
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Si viene el nombre de empresa desde el registro, se carga aquí
+    (function () {
+      const empresa = (new URLSearchParams(location.search).get('empresa') || '').trim();
+      if (empresa) {
+        const info = document.querySelector('.info dd'); if (info) info.textContent = empresa;
+        const meta = document.querySelector('.meta strong'); if (meta) meta.textContent = empresa;
+        const ub = document.querySelector('.bubble-user'); if (ub) ub.textContent = empresa;
+      }
+    })();
+
+    // Enviar respuesta: agrega una burbuja de usuario (mock interactivo)
+    const input = document.getElementById('answer');
+    const thread = document.getElementById('thread');
+    const typing = document.querySelector('.typing');
+
+    function send() {
+      const text = input.value.trim();
+      if (!text) return;
+      const msg = document.createElement('div');
+      msg.className = 'msg msg-user';
+      msg.innerHTML = `<div class="bubble bubble-user"></div>
+        <span class="user-avatar"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="#64748B" stroke-width="1.8"/>
+        <path d="M5 20 a7 7 0 0 1 14 0" fill="none" stroke="#64748B" stroke-width="1.8"/></svg></span>`;
+      msg.querySelector('.bubble-user').textContent = text;
+      thread.insertBefore(msg, typing);
+      input.value = '';
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    document.getElementById('send').addEventListener('click', send);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+  </script>
+
+</body>
+</html>
